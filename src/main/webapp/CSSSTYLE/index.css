@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+.control:hover{
+	background-color: white;
+	color:black;
+}
+body{
+	background-color: black;
+}
+#bgimge{
+	background-image: url('images/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+/* #card2:hover{ */
+/* 	background-color: gray; */
+/* 	border: blue; */
+/* 	color:white; */
+/* } */

@@ -1,0 +1,51 @@
+@charset "ISO-8859-1";
+p,
+ul,
+li,
+div,
+nav {
+  padding: 0;
+  margin: 0;
+}
+#cssvmenu {
+  overflow: auto;
+  position: relative;
+  z-index: 2;
+}
+.parent-menu {
+  background-color: #0c8fff;
+  min-width: 200px;
+  float: left;
+}
+#cssvmenu ul {
+  list-style-type: none;
+}
+#cssvmenu ul li a {
+  padding: 10px 15px;
+  display: block;
+  color: #4c4c4c;
+  text-decoration: none;
+}
+#cssvmenu ul li a:hover {
+  background-color: #f1f1f1;
+}
+#cssvmenu ul li:hover > ul {
+  left: 200px;
+  -webkit-transition: left 400ms ease-out;
+  -moz-transition: left 400ms ease-out;
+  -ms-transition: left 400ms ease-out;
+  transition: left 400ms ease-out;
+}
+#cssvmenu ul li > ul {
+  position: absolute;
+  background-color: #eee;
+  top: 0;
+  left: -200px;
+  min-width: 200px;
+  z-index: -1;
+  height: 100%;
+  -webkit-transition: left 400ms ease-out;
+  -moz-transition: left 400ms ease-out;
+  -ms-transition: left 400ms ease-out;
+  transition: left 400ms ease-out;
+}

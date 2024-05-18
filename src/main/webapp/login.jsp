@@ -21,11 +21,11 @@ body {
 }
 
 .card {
-  width: 300px;
+  width: 400px;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -73,16 +73,19 @@ button {
 <script src="JS/AllValidations.js">
 </script>
 </head>
-<body>
+<body onload="hidemessage()">
 	<div class="container"> 
 		<div class="card">
 		
-			<h2>Login Form</h2>
+			<h2>Login Here</h2>
 			<form name="frm" action="validate" method="POST">
-				<label for="username">Username</label> <input type="text"
-					id="username" name="username" placeholder="Enter your username"> <label
-					for="password">Password</label> <input type="password"
-					id="password" name="password" placeholder="Enter your password">
+				<label for="username">Email</label> 
+				
+			    <input type="text" id="username" name="username" placeholder="Enter your Email" value="" onkeyup='validateEmail()'> 
+				<span id="emailid"></span>	
+				<label	for="password">Password</label> 
+				<input type="password" id="password" name="password" placeholder="Enter your password" value="" onkeyup='checkPassword()'>
+				<span id="passwordid"></span>
 
 				<button type="submit">Login</button>
 			</form>
@@ -91,6 +94,7 @@ button {
 					here</a>
 			</div>
 			
+				<h5 id="automatic" style="color:red;text-align: center;"></h5>
 		
 		</div>
 
@@ -111,7 +115,36 @@ button {
 <!-- 					here</a> -->
 <!-- 			</div> -->
 <!-- 		</div> -->
+
 	</div>
-	
+	<%
+	String msg = (String) request.getAttribute("msg");
+
+	if (msg != null) {
+	%>
+	<script>
+            function hidemessage() {
+                var hideElement = document.getElementById("automatic");
+                var originalText = hideElement.innerHTML;
+                var typemessage = "<%=msg%>";
+		         
+			if (typemessage) {
+				hideElement.innerHTML = typemessage;
+				setTimeout(function() {
+					hideElement.innerHTML = originalText;
+				}, 5000); // Change 5000 to 5000 milliseconds (5 seconds)
+			}
+		}
+	</script>
+
+	<%
+	}
+	%>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous">
+		
+	</script>
 </body>
 </html>

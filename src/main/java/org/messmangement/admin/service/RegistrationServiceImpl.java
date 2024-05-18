@@ -40,4 +40,22 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return rRepository.updateRegistration(rid,name,contact,address,rsdate,redate,amount,username,password,cid,roleid);
 	}
 
+	@Override
+	public List<RegistrationModel> getNameByRid(int rid) {
+		
+		return rRepository.getNameByRid(rid);
+	}
+
+	@Override
+	public boolean updateProfile(int rid, String name, String contact, String address, String email, String password) {
+		
+		return rRepository.updateProfile(rid,name,contact,address,email,password);
+	}
+
+	@Override
+	public List<Object[]> getAllRegistrationByCategory(String category) {
+		
+		return rRepository.getAllRegistrationByCategory(category);
+	}
+
 }

@@ -94,19 +94,33 @@ table th {
   }
 }
 #catcaption{
+   justify-content:center;
    text-align: center;
    font-family: sans-serif;
    font-size: 1.5em;
    margin-bottom:1em;
-  color: black; 
+   padding:0.3em;
+   width:20em;
+   height:2em;
+   background-color:#1976d2;
+   border-radius:20px;
+  color: white; 
 }
 </style>
+<script type="text/javascript">
+function setDeleteAlert(){
+	alert("Are you sure want's to delete MealTime?");
+}
+function setUpdateAlert(){
+	alert("Are you sure want's to Update MealTime?");
+}
+</script>
 </head>
 <body>
 	<%@include file="admindashboard.jsp"%>
-	<div class="col-md-8 offset-md-1">
+	<div class="col-md-8 offset-md-1 mt-3">
 		<br> <br>
-		<h2 id="catcaption">Meal Time Information</h2>
+		<center><h2 id="catcaption">MealTime Information</h2></center>
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -127,8 +141,8 @@ table th {
 				<tr>
 					<td data-label="count"><%=++count%></td>
       				<td data-label="mealtype"><%=model.getMealtype()%></td>
-     				 <td data-label="Delete"><a href="deletemealtype?mtid=<%=model.getMtid()%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle"></a></td>
-					<td data-label="Update"><a href="updatemealtime?mtid=<%=model.getMtid()%>&mealtype=<%=model.getMealtype()%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle"></a></td>
+     				 <td data-label="Delete"><a href="deletemealtype?mtid=<%=model.getMtid()%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle" onclick="setDeleteAlert()"></a></td>
+					<td data-label="Update"><a href="updatemealtime?mtid=<%=model.getMtid()%>&mealtype=<%=model.getMealtype()%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle" onclick="setUpdateAlert()"></a></td>
 				</tr>
 				<%
 				}

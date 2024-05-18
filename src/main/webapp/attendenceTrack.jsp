@@ -1,4 +1,4 @@
-<%@page import="java.time.LocalDate"%>
+
 <%@page import="org.messmangement.admin.service.CategoryServiceImpl"%>
 <%@page import="org.messmangement.admin.service.CategoryService"%>
 <%@page import="java.util.LinkedHashMap"%>
@@ -42,13 +42,13 @@ table tr {
 	padding: 1em;
 }
 
-table tr:nth-child(even) {
-	background: #f0f0f0;
-}
+/* table tr:nth-child(even) { */
+/* 	background: #f0f0f0; */
+/* } */
 
-table tbody tr:hover {
-	background: #d9e3e8;
-}
+/* table tbody tr:hover { */
+/* 	background: #d9e3e8; */
+/* } */
 
 table th, table td {
     
@@ -79,18 +79,18 @@ table th {
 		display: block;
 		text-align: left;
 	}
-	table td::before {
-		content: attr(data-label);
-		display: block;
-		font-weight: light;
-		text-transform: uppercase;
-		font-size: 0.7em;
-		margin-bottom: 0.6em;
-		color: #1976d2;
-	}
-	table td:last-child {
-		border-bottom: 0;
-	}
+/* 	table td::before { */
+/* 		content: attr(data-label); */
+/* 		display: block; */
+/* 		font-weight: light; */
+/* 		text-transform: uppercase; */
+/* 		font-size: 0.7em; */
+/* 		margin-bottom: 0.6em; */
+/* 		color: #1976d2; */
+/* 	} */
+/* 	table td:last-child { */
+/* 		border-bottom: 0; */
+/* 	} */
 }
 
 #catcaption {
@@ -115,33 +115,64 @@ table th {
 
 input{
   border: none;
-  background-color: #f0f0f0;
+/*   background-color: #f0f0f0; */
   text-align: center;
 }
-input:hover {
-	background: #d9e3e8;
-}
+/* input:hover { */
+/* 	background: #d9e3e8; */
+/* } */
 select {
   border: none;
   background-color: #f0f0f0;
 }
-input[submit] {
+#attendance {
 	width: auto;
+	height:30px;
 	background-color: green;
 	color:white;
+	border-radius: 10px;
+}
+#catcaption{
+   justify-content:center;
+   text-align: center;
+   font-family: sans-serif;
+   font-size: 1.5em;
+   margin-bottom:1em;
+   padding:0.3em;
+   width:20em;
+   height:2em;
+   background-color:#1976d2;
+   border-radius:20px;
+  color: white; 
 }
 </style>
+<script type='text/javascript'> --> 
+<!-- / 	function submitAttendance() { -->
+<!-- // 		var rid = document.getElementById("rid").value; -->
+<!-- // // 		var category = document.getElementById("category").value; -->
+<!-- // 		var adate = document.getElementById("adate").value; -->
+<!-- // 		var mealtype = document.getElementById("mealtype").value; -->
+<!-- // 		var xhttp = new XMLHttpRequest(); -->
+<!-- // 		xhttp.onreadystatechange = function() { -->
+<!-- // 			if (this.readyState == 4 && this.status == 200) { -->
+<!-- // // 				document.getElementById("p").innerHTML = this.responseText; -->
+<!-- // 			} -->
+<!-- // 		}; -->
+<!-- // 		xhttp.open("GET", "attendance?rid="+rid+ "&category=" +category+"&adate="+adate+"&mealtype="+mealtype, true); -->
+<!-- // 		xhttp.send(); -->
+<!-- // 	} -->
+ </script> 
+
 </head>
 <body onload="hidemessage()">
 	<%@include file="admindashboard.jsp"%>
-	<div class="col-md-9 mx-2">
+	<div class="col-md-9 mx-2 mt-3">
 		<%!int key;
 	String value;%>
 		<br> <br>
-		<h2 id="catcaption">Attendance Track</h2>
-		<center><bold>
-		<h5 id="automatic" style="color: rgba(16, 163, 127);"></h5>
-		</bold></center>
+				<center><h2 id="catcaption">Attendance Track</h2></center>
+
+		<h5 id="automatic" style="color: rgba(16, 163, 127);text-align: center;"></h5>
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -157,27 +188,24 @@ input[submit] {
 			</thead>
 			<tbody>
 				<%
-				RegistrationService rService = new RegistrationServiceImpl();
-				List<Object[]> list = rService.getAllRegistration();
+				RegistrationService rrService = new RegistrationServiceImpl();
+				List<Object[]> list = rrService.getAllRegistration();
 				int count = 0;
 				for (Object[] obj : list) {
 				%>
-				<form action="attendance">
+ 				<form action="attendance" method="get"> 
 				<tr>
-
-
 					<td>
-					
 					<%=++count%>
-					<input type="hidden" name="rid" value="<%=obj[0]%>">
+					<input type="hidden" name="rid" id="rid" value="<%=obj[0]%>">
 					</td>
 					<td data-label="Name">
-					<input name ="name" type ="text" value="<%=obj[1]%>">
+					<input name ="name" type ="text" value="<%=obj[1]%>" readonly="readonly">
 				   </td>
 
-					<td data-label="Category"><input name ="category" type ="text" value="<%=obj[9]%>" ></td>
+					<td data-label="Category"><input name ="category" id="category" type ="text" value="<%=obj[9]%>" readonly="readonly" ></td>
 					<td data-label="adate">
-					<input name ="adate" type ="text" value="<%=LocalDate.now()%>" >
+					<input name ="adate" type ="date" value="" id="adate" >
 					</td>
 					<td>
 						<%
@@ -193,8 +221,8 @@ input[submit] {
 								name="mealtype"  required>
 								<option value="">Select Mealtime</option>
 								<%
-								Set<Map.Entry<Integer, String>> s = hs.entrySet();
-								for (Map.Entry<Integer, String> m : s) {
+								Set<Map.Entry<Integer, String>> se = hs.entrySet();
+								for (Map.Entry<Integer, String> m : se) {
 								%>
 								<option value='<%=m.getKey()%>'><%=m.getValue()%></option>
 								<%
@@ -204,7 +232,7 @@ input[submit] {
 						</div>
 					</td>
 
-					<td data-label="attendancetrack"><input type="submit" value="Attendance">
+					<td data-label="attendancetrack"><input type="submit" value="Attendance" name="attendance" id='attendance' />
 						</td>
 
 				</tr>

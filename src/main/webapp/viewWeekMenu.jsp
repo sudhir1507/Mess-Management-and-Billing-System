@@ -93,19 +93,33 @@ table th {
   }
 }
 #catcaption{
+   justify-content:center;
    text-align: center;
    font-family: sans-serif;
    font-size: 1.5em;
    margin-bottom:1em;
-  color: black; 
+   padding:0.3em;
+   width:20em;
+   height:2em;
+   background-color:#1976d2;
+   border-radius:20px;
+  color: white; 
 }
 </style>
+<script type="text/javascript">
+function setDeleteAlert(){
+	alert("Are you sure want's to delete Menu?");
+}
+function setUpdateAlert(){
+	alert("Are you sure want's to Update Menu?");
+}
+</script>
 </head>
 <body>
     <%@include file="admindashboard.jsp"%>
-	<div class="col-md-8 offset-md-1">
+	<div class="col-md-8 offset-md-1 mt-3">
 		<br> <br>
-		<h2 id="catcaption">Week Menu</h2>
+		<center><h2 id="catcaption">Menu Information</h2></center>
 		<table class="table table-hover">
 <!-- 			<caption>Universitas Amikom Yogyakarta</caption> -->
 			<thead>
@@ -130,8 +144,8 @@ table th {
       				<td data-label="Date"><%=model.getDate() %></td>
      				 <td data-label="lunch"><%=model.getLunch() %></td>
      				  <td data-label="dinner"><%=model.getDinner() %></td>
-     				 <td data-label="Delete"><a href="deleteweekmenu?mid=<%=model.getMid()%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle"></a></td>
-					<td data-label="Update"><a href="updateweekmenu?mid=<%=model.getMid()%>&Date=<%=model.getDate()%>&lunch=<%=model.getLunch()%>&dinner=<%=model.getDinner()%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle"></a></td>
+     				 <td data-label="Delete"><a href="deleteweekmenu?mid=<%=model.getMid()%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle" onclick="setDeleteAlert()"></a></td>
+					<td data-label="Update"><a href="updateweekmenu?mid=<%=model.getMid()%>&Date=<%=model.getDate()%>&lunch=<%=model.getLunch()%>&dinner=<%=model.getDinner()%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle" onclick="setUpdateAlert()"></a></td>
 				</tr>
 				<%
 				}

@@ -89,19 +89,70 @@ table th {
   }
 }
 #catcaption{
+   justify-content:center;
    text-align: center;
    font-family: sans-serif;
    font-size: 1.5em;
    margin-bottom:1em;
-  color: black; 
+   padding:0.3em;
+   width:35em;
+   height:2em;
+   background-color:#1976d2;
+   border-radius:20px;
+  color: white; 
 }
+#searchbycat{
+justify-content:center;
+   text-align: center;
+   font-family: sans-serif;
+   font-size: 1.1em;
+   margin-bottom:1em;
+   margin-left:2em;
+   padding:0.08em;
+   width:15em;
+   height:2em;
+   float:right;
+   border:2px solid #1976d2; 
+   border-radius:0.2em;
+ 
+}
+/* #searchbycat:focus { */
+/* width:15em; */
+/*    height:2em; */
+/* 	font-size: 16px; */
+/* } */
 </style>
+<script type="text/javascript">
+function setDeleteAlert(){
+	alert("Are you sure want's to delete Registration?");
+}
+function setUpdateAlert(){
+	alert("Are you sure want's to Update Registration?");
+}
+function searchByCategory(){
+	let cat=document.getElementById("searchbycat").value;
+	let xhttp=new XMLHttpRequest();
+	xhttp.onreadystatechange=function(){
+		 if(this.readyState==4 && this.status==200){
+			 document.getElementById("d").innerHTML=this.responseText;
+		 }
+	};
+	xhttp.open("GET","searchByCategory.jsp?category="+cat,true)
+	xhttp.send();
+}
+
+</script>
 </head>
 <body>
 <%@include file="admindashboard.jsp"%>
 	<div class="col-md-9 mx-2">
 		<br> <br>
+		<div class="d-flex">
 		<h2 id="catcaption">Registration Information</h2>
+		<input class="mx-5" type="search" id="searchbycat" name="cat" placeholder="search by category" value="" onkeyup="searchByCategory()"/>
+		
+		</div>
+		<div id="d">
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -122,8 +173,8 @@ table th {
 			</thead>
 			<tbody>
 				<%
-				RegistrationService rService=new RegistrationServiceImpl();
-				List<Object[]> list=rService.getAllRegistration();
+				RegistrationService regService=new RegistrationServiceImpl();
+				List<Object[]> list=regService.getAllRegistration();
 				int count=0;
 				for (Object []obj:list) {
 				%>
@@ -139,14 +190,15 @@ table th {
 					<td data-label="Password"><%=obj[8] %></td>
 					<td data-label="Category"><%=obj[9]%></td>
 					<td data-label="Role"><%=obj[10]%></td>
-					<td data-label="Delete"><a href="deleteregistration?rid=<%=obj[0]%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle"></a></td>
-					<td data-label="Update"><a href="updateregister?rid=<%=obj[0]%>&name=<%=obj[1]%>&contact=<%=obj[2]%>&address=<%=obj[3]%>&rsdate=<%=obj[4]%>&redate=<%=obj[5]%>&amount=<%=obj[6]%>&username=<%=obj[7]%>&password=<%=obj[8]%>&category=<%=obj[9]%>&rolename=<%=obj[10]%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle"></a></td>
+					<td data-label="Delete"><a href="deleteregistration?rid=<%=obj[0]%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle" onclick="setDeleteAlert()"></a></td>
+					<td data-label="Update"><a href="updateregister?rid=<%=obj[0]%>&name=<%=obj[1]%>&contact=<%=obj[2]%>&address=<%=obj[3]%>&rsdate=<%=obj[4]%>&redate=<%=obj[5]%>&amount=<%=obj[6]%>&username=<%=obj[7]%>&password=<%=obj[8]%>&category=<%=obj[9]%>&rolename=<%=obj[10]%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle" onclick="setUpdateAlert()"></a></td>
 				</tr>
 				<%
 				}
 				%>
 			</tbody>
 		</table>
+		</div>
 	</div>
 	</div>
 	</div>

@@ -3,11 +3,13 @@ package org.messmanagement.admin.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/logoutvalidate")
 public class LogoutValidateController extends HttpServlet {
@@ -15,19 +17,26 @@ public class LogoutValidateController extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		PrintWriter out=response.getWriter();
-		//out.println("before logout "+request.getSession(false));
-		request.getSession(false).invalidate();
-		
-		response.sendRedirect("login.jsp");
-//		out.println("<h2>Thank you! You are successfully logged out.<h2>");
-		//out.println("after logout "+request.getSession(false));
+		PrintWriter out = response.getWriter();
+
+		HttpSession session = request.getSession(false); // Retrieve existing session, don't create a new one
+		if (session != null) {
+		   // int rid = (int) session.getAttribute("rid");
+		   // System.out.println(rid);
+            session.removeAttribute("rid");
+		    session.invalidate(); // Invalidate the session
+		  //  System.out.println("Session invalidated.");
+		   // System.out.println(session);
+		   // System.out.println(rid);
+		    // Redirect to login page after session invalidation
+		    response.sendRedirect("login.jsp");
+		} else {
+		    // Handle the case where session is already null
+		    response.sendRedirect("login.jsp");
+		}
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

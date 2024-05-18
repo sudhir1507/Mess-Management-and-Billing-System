@@ -29,31 +29,32 @@ public class loginValidateController extends HttpServlet {
 		if(list!=null) {
 		int rid=list.get(0);
 		int roleid=list.get(1);
-		if(roleid==1) {
+		   if(roleid==1) {
 			HttpSession session=request.getSession(true);
 			session.setAttribute("rid", rid);
 			RequestDispatcher r=request.getRequestDispatcher("admindashboard.jsp");
 			r.forward(request, response);
-		}else if(roleid==2) {
+		   }else if(roleid==2) {
 			HttpSession session=request.getSession(true);
 			session.setAttribute("rid", rid);
 			RequestDispatcher r=request.getRequestDispatcher("userdashboard.jsp");
 			r.forward(request, response);
-		}else {
+		  }else {
 //			RequestDispatcher r=request.getRequestDispatcher("login.jsp");
 //			out.println("<center>invalid username or  password </center>");
 //			r.include(request, response);
 			request.setAttribute("msg", "invalid username or password ");
-			RequestDispatcher r=request.getRequestDispatcher("login.jsp");
+			//RequestDispatcher r=request.getRequestDispatcher("login.jsp");
 			//out.println("<center>invalid username or password </center>");
-			r.include(request, response);
+			//r.include(request, response);
 		  }
 		}else {
 			request.setAttribute("msg", "invalid username or password ");
-			RequestDispatcher r=request.getRequestDispatcher("login.jsp");
 			//out.println("<center>invalid username or password </center>");
-			r.include(request, response);
+			
 		}
+		RequestDispatcher r=request.getRequestDispatcher("login.jsp");
+		r.include(request, response);
 		
 		
 	}

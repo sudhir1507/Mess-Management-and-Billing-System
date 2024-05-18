@@ -38,12 +38,12 @@ public class AddRegistrationController extends HttpServlet {
 		RegistrationService rService=new RegistrationServiceImpl();
 		boolean b=rService.addRegistration(model);
 		if(b) {
-			RequestDispatcher r=request.getRequestDispatcher("registration.jsp");
-			r.include(request, response);
+			request.setAttribute("msg", "Registered successfully");
 		}else {
-			out.println("<h3>Not register.. Some problem is there</h3>");
+			request.setAttribute("msg", "Not Registered..Try Again");
 		}
-		
+		RequestDispatcher r=request.getRequestDispatcher("registration.jsp");
+		r.include(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -47,28 +47,58 @@ form button:hover {
 </script>
 
 </head>
-<body>
+<body onload="hidemessage()">
     <%@include file="admindashboard.jsp"%>
     <div class="col-md-8 mt-5">
-        <div class="container">
+        <div class="container mt-5">
             <form name="frm" action="addcategory" method="POST">
                 <h3 style="font-family:Arial, sans-serif">Add Category</h3>
                 <hr>
                 <div class="form-group">
                     <label for="name">Category Name :</label> 
-                    <input type="text" class="form-control mt-1" name="category" placeholder="e.x. Monthly" onkeyup="nameValidate(this.value)">
+                    <input type="text" class="form-control mt-1" name="category" placeholder="e.x. Monthly" onkeyup="nameValidate(this.value)" required="required">
                     <span id="sn"></span>
                 </div>
                 <div class="form-group">
                     <label for="number">Category Fees :</label> 
-                    <input type="number" class="form-control mt-1" name="fees" placeholder="e.x. 3000" onkeyup="validateFees(this.value)">
+                    <input type="number" class="form-control mt-1" name="fees" placeholder="e.x. 3000" onkeyup="validateFees(this.value)" required="required">
                     <span id="fee"></span>
                 </div>
+                <h5 id="automatic" style="color: rgba(16, 163, 127);text-align: center;"></h5>
                 <button type="submit" class="btn" style="background-color: #007BFF;">Submit</button>
             </form>
         </div>
     </div>
     </div>
 	</div>
+	<%
+	String msg = (String) request.getAttribute("msg");
+
+	if (msg != null) {
+	%>
+	<script>
+            function hidemessage() {
+                var hideElement = document.getElementById("automatic");
+                var originalText = hideElement.innerHTML;
+                var typemessage = "<%=msg%>";
+		         
+			if (typemessage) {
+				hideElement.innerHTML = typemessage;
+				setTimeout(function() {
+					hideElement.innerHTML = originalText;
+				}, 5000); // Change 5000 to 5000 milliseconds (5 seconds)
+			}
+		}
+	</script>
+
+	<%
+	}
+	%>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous">
+		
+	</script>
 </body>
 </html>

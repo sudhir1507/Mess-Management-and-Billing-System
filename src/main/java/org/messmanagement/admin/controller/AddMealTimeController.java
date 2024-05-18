@@ -31,14 +31,14 @@ public class AddMealTimeController extends HttpServlet {
 		MealTimeService mService=new MealTimeSerivceImpl();
 		boolean b=mService.addMealTime(Model);
 		if(b) {
-			RequestDispatcher r=request.getRequestDispatcher("addMealTime.jsp");
-			r.include(request, response);
+			request.setAttribute("msg", "MealTime Added Successfully..!");
+			
 		}else {
-			RequestDispatcher r=request.getRequestDispatcher("addMealTime.jsp");
-			out.println("<center>Some problem is there</center>");
-			r.include(request, response);
+			request.setAttribute("msg", "MealTime Not Added..!");
 			
 		}
+		RequestDispatcher r=request.getRequestDispatcher("addMealTime.jsp");
+		r.include(request, response);
 	}
 
 	

@@ -1,10 +1,14 @@
+<%@page import="java.util.List"%>
+<%@page import="org.messmanagement.admin.model.RegistrationModel"%>
+<%@page import="org.messmangement.admin.service.RegistrationServiceImpl"%>
+<%@page import="org.messmangement.admin.service.RegistrationService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin dashboard</title>
+<title>Admin Dashboard</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -37,12 +41,24 @@ font-size: 1em;
 </style>
 </head>
 <body>
+<%-- <jsp:include page="loginerror.jsp"></jsp:include> --%>
 	<div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 wrapper"  id="dashboard">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline px-2"><img src="images/profileimg.webp" alt="Profile" width="40" height="40" class="rounded-circle">&nbsp;&nbsp;<br>My Profile</span>
+                <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline px-2"><img src="images/profileimg.webp" alt="Profile" width="40" height="40" class="rounded-circle"></span><span>&nbsp;&nbsp;<br>Welcome back..!<br> 
+                    <%
+                    
+                    int rid=Integer.parseInt(session.getAttribute("rid").toString());
+                    RegistrationService rService=new RegistrationServiceImpl();
+                    List<RegistrationModel> rlist=rService.getNameByRid(rid);
+                    RegistrationModel rmodel=rlist.get(0);
+                    int regid=rmodel.getRid();
+                    String name=rmodel.getName();
+                    %>
+                    &nbsp;&nbsp;&nbsp;<%=name %>
+                    </span>
                 </a>
                 <h3 style="color:white">---------------</h3>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -84,7 +100,7 @@ font-size: 1em;
                     </li>
                     <li>
                         <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">WeeklyMenu Master</span></a>
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Menu Master</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
                             <li class="w-100">
                                 <a href="addMenu.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline innerspan">Add Menu</span></a>
@@ -125,11 +141,11 @@ font-size: 1em;
                             <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bill Master</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu7" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline innerspan">Generate Bill</span></a>
+                                <a href="billGenerate.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline innerspan">Generate Bill</span></a>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline innerspan">View Bills</span></a>
-                            </li>
+<!--                             <li> -->
+<!--                                 <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline innerspan">View Bills</span></a> -->
+<!--                             </li> -->
                         </ul>
                     </li>
                     <li id="logoutbtn">

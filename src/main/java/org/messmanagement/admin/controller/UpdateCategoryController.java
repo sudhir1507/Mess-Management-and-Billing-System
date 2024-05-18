@@ -67,7 +67,7 @@ public class UpdateCategoryController extends HttpServlet {
                 out.println("<label for='name'>");
                 out.println("Category Name :");
                 out.println("</label>");
-                out.println("<input type='text' class='form-control mt-1'value='"+category+"' name='category' onkeyup='nameValidate(this.value)'>");
+                out.println("<input type='text' class='form-control mt-1'value='"+category+"' name='category' onkeyup='nameValidate(this.value)' required=\"required\">");
                 out.println("<span id=\"sn\">");
                 out.println("</span>"); 
                  out.println("</div>");  
@@ -75,7 +75,7 @@ public class UpdateCategoryController extends HttpServlet {
                  out.println("<label for='number'>");
                  out.println("Category Fees :");
                  out.println("</label>");
-                 out.println("<input type='number' class='form-control mt-1' value='"+fees+"' name='fees'>");
+                 out.println("<input type='number' class='form-control mt-1' value='"+fees+"' name='fees' required=\"required\">");
                  out.println("</div><br>");
                  out.println("<button type='submit' class='btn' name='s' style='background-color: #007BFF;'>");
                  out.println("Update");

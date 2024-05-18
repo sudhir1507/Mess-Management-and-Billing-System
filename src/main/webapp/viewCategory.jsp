@@ -93,19 +93,33 @@ table th {
   }
 }
 #catcaption{
+   justify-content:center;
    text-align: center;
    font-family: sans-serif;
    font-size: 1.5em;
    margin-bottom:1em;
-  color: black; 
+   padding:0.3em;
+   width:20em;
+   height:2em;
+   background-color:#1976d2;
+   border-radius:20px;
+  color: white; 
 }
 </style>
+<script type="text/javascript">
+function setDeleteAlert(){
+	alert("Are you sure want's to delete Category?");
+}
+function setUpdateAlert(){
+	alert("Are you sure want's to Update Category?");
+}
+</script>
 </head>
 <body>
 	<%@include file="admindashboard.jsp"%>
-	<div class="col-md-8 offset-md-1">
+	<div class="col-md-8 offset-md-1 mt-3">
 		<br> <br>
-		<h2 id="catcaption">Category Information</h2>
+		<center><h2 id="catcaption">Category Information</h2></center>
 		<table class="table table-hover">
 <!-- 			<caption>Universitas Amikom Yogyakarta</caption> -->
 			<thead>
@@ -128,8 +142,8 @@ table th {
 					<td data-label="count"><%=++count%></td>
       				<td data-label="category"><%=model.getCategory() %></td>
      				 <td data-label="fees"><%=model.getFees() %></td>
-     				 <td data-label="Delete"><a href="deletecategory?cid=<%=model.getCid()%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle"></a></td>
-					<td data-label="Update"><a href="updatecategory?cid=<%=model.getCid()%>&category=<%=model.getCategory()%>&fees=<%=model.getFees()%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle"></a></td>
+     				 <td data-label="Delete"><a href="deletecategory?cid=<%=model.getCid()%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle" onclick="setDeleteAlert()"></a></td>
+					<td data-label="Update"><a href="updatecategory?cid=<%=model.getCid()%>&category=<%=model.getCategory()%>&fees=<%=model.getFees()%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle" onclick="setUpdateAlert()"></a></td>
 				</tr>
 				<%
 				}

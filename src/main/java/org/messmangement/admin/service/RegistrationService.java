@@ -11,4 +11,7 @@ public interface RegistrationService {
      public List<Object[]> getAllRegistration();
      public boolean deleteRegistration(int rid);
      public boolean updateRegistration(int rid,String name,String contact,String address,Date rsdate,Date redate,int amount,String username, String password,int cid,int roleid);
+     public List<RegistrationModel> getNameByRid(int rid);
+     public boolean updateProfile(int rid, String name, String contact,String address,String email, String password);
+     public List<Object[]> getAllRegistrationByCategory(String category);
 }

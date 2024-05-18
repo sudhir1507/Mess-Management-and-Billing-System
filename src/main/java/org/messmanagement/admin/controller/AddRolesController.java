@@ -28,13 +28,13 @@ public class AddRolesController extends HttpServlet {
 		RolesService rService=new RolesServiceImpl();
 		boolean b=rService.addRoles(model);
 		if(b) {
-			RequestDispatcher r=request.getRequestDispatcher("addRoles.jsp");
-			r.forward(request, response);
+			request.setAttribute("msg", "Role Added Successfully..!");
+			
 		}else {
-			RequestDispatcher r=request.getRequestDispatcher("addRoles.jsp");
-			out.println("<center>Role Not Added..Some problem is there</center>");
-			r.include(request, response);
+			request.setAttribute("msg", "Role NOT Added..!");
 		}
+		RequestDispatcher r=request.getRequestDispatcher("addRoles.jsp");
+		r.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -30,14 +30,12 @@ public class AddCategoryController extends HttpServlet {
 		CategoryService cService=new CategoryServiceImpl();
 		boolean b=cService.addCategory(cModel);
 		if(b) {
-			RequestDispatcher r=request.getRequestDispatcher("addCategory.jsp");
-			r.include(request, response);
+			request.setAttribute("msg", "Category Added Successfully..!");
 		}else {
-			RequestDispatcher r=request.getRequestDispatcher("addCategory.jsp");
-			out.println("<center>Some problem is there</center>");
-			r.include(request, response);
-			
+			request.setAttribute("msg", "Category NOT Added..!");
 		}
+		RequestDispatcher r=request.getRequestDispatcher("addCategory.jsp");
+		r.include(request, response);
 	}
 
 	

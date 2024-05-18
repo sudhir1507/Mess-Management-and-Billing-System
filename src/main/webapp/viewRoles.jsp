@@ -93,19 +93,33 @@ table th {
   }
 }
 #catcaption{
+   justify-content:center;
    text-align: center;
    font-family: sans-serif;
    font-size: 1.5em;
    margin-bottom:1em;
-  color: black; 
+   padding:0.3em;
+   width:20em;
+   height:2em;
+   background-color:#1976d2;
+   border-radius:20px;
+  color: white; 
 }
 </style>
+<script type="text/javascript">
+function setDeleteAlert(){
+	alert("Are you sure want's to delete Roles?");
+}
+function setUpdateAlert(){
+	alert("Are you sure want's to Update Role?");
+}
+</script>
 </head>
 <body>
 <%@include file="admindashboard.jsp"%>
-	<div class="col-md-8 offset-md-1">
+	<div class="col-md-8 offset-md-1 mt-3">
 		<br> <br>
-		<h2 id="catcaption">Roles Information</h2>
+		<center><h2 id="catcaption">Role Information</h2></center>
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -118,16 +132,16 @@ table th {
 			<tbody>
 				<%
 				
-				RolesService rService=new RolesServiceImpl();
-				List<RolesModel> list=rService.getAllRoles();
+				RolesService roleService=new RolesServiceImpl();
+				List<RolesModel> list=roleService.getAllRoles();
 				int count=0;
 				for (RolesModel model:list) {
 				%>
 				<tr>
 					<td data-label="count"><%=++count%></td>
       				<td data-label="rolename"><%=model.getRolename()%></td>
-     				 <td data-label="Delete"><a href="deleteroles?roleid=<%=model.getRoleid()%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle"></a></td>
-					<td data-label="Update"><a href="updateroles?roleid=<%=model.getRoleid()%>&rolename=<%=model.getRolename()%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle"></a></td>
+     				 <td data-label="Delete"><a href="deleteroles?roleid=<%=model.getRoleid()%>"><img src="images/Trash.webp" alt="delete icon" width="30" height="30" class="rounded-circle" onclick="setDeleteAlert()"></a></td>
+					<td data-label="Update"><a href="updateroles?roleid=<%=model.getRoleid()%>&rolename=<%=model.getRolename()%>"><img src="images/edit.webp" alt="update icon" width="30" height="30" class="rounded-circle" onclick="setUpdateAlert()"></a></td>
 				</tr>
 				<%
 				}

@@ -90,7 +90,7 @@ public class UpdateRegistrationController extends HttpServlet {
 		out.println("        background-color: #0056b3;");
 		out.println("    }");
 		out.println("</style>");
-		out.println("<script type='text/javascript' src='JS/AllValidations.js'>");
+		out.println("<script type='text/javascript' src=\"JS/RegistrationValidations.js\">\r\n");
 		out.println("</script>");
 		out.println("<body>");
 		out.println("<div class=\"col-md-8 offset-md-1\">");
@@ -104,36 +104,36 @@ public class UpdateRegistrationController extends HttpServlet {
 		out.println("            </div>");
 		out.println("            <div class=\"form-group\">");
 		out.println("                <label for=\"name\">Name:</label>");
-		out.println("                <input type=\"text\" id=\"name\" name=\"name\" value='"+name+"'>");
+		out.println("                <input type=\"text\" id=\"name\" name=\"name\" value='"+name+"' required=\"required\" onkeyup='nameValidate(this.value)'>");
 		out.println("            </div>");
 		out.println("            <div class=\"form-group\">");
 		out.println("                <label for=\"contact\">Contact:</label>");
-		out.println("                <input type=\"text\" id=\"contact\" name=\"contact\" value='"+contact+"'>");
+		out.println("                <input type=\"text\" id=\"contact\" name=\"contact\" value='"+contact+"' required=\"required\">");
 		out.println("            </div>");
 		
 		out.println("            <div class=\"form-group\">");
 		out.println("                <label for=\"address\">Address:</label>");
-		out.println("                <input type=\"text\" id=\"address\" name=\"address\" value='"+address+"'>");
+		out.println("                <input type=\"text\" id=\"address\" name=\"address\" value='"+address+"' required=\"required\">");
 		out.println("            </div>");
 		out.println("            <div class=\"form-group\">");
 		out.println("                <label for=\"registration_start\">Registration Start Date:</label>");
-		out.println("                <input type=\"date\" id=\"registration_start\" name=\"rsdate\" value='"+rsdate+"'>");
+		out.println("                <input type=\"date\" id=\"registration_start\" name=\"rsdate\" value='"+rsdate+"' required=\"required\">");
 		out.println("            </div>");
 		out.println("            <div class=\"form-group\">");
 		out.println("                <label for=\"registration_end\">Registration End Date:</label>");
-		out.println("                <input type=\"date\" id=\"registration_end\" name=\"redate\" value='"+redate+"'>");
+		out.println("                <input type=\"date\" id=\"registration_end\" name=\"redate\" value='"+redate+"' required=\"required\">");
 		out.println("            </div>");
 		out.println("            <div class=\"form-group\">");
 		out.println("                <label for=\"amount\">Amount:</label>");
-		out.println("                <input type=\"number\" id=\"amount\" name=\"amount\" value='"+amount+"'>");
+		out.println("                <input type=\"number\" id=\"amount\" name=\"amount\" value='"+amount+"' required=\"required\">");
 		out.println("            </div>");
 		out.println("            <div class=\"form-group\">");
-		out.println("                <label for=\"username\">Username:</label>");
-		out.println("                <input type=\"text\" id=\"username\" name=\"username\" value='"+username+"'>");
+		out.println("                <label for=\"username\">Email:</label>");
+		out.println("                <input type=\"text\" id=\"username\" name=\"username\" value='"+username+"' required=\"required\">");
 		out.println("            </div>");
 		out.println("            <div class=\"form-group\">");
 		out.println("                <label for=\"password\">Password:</label>");
-		out.println("                <input type=\"password\" id=\"password\" name=\"password\" value='"+password+"'>");
+		out.println("                <input type=\"password\" id=\"password\" name=\"password\" value='"+password+"' required=\"required\">");
 		out.println("            </div>");
 		CategoryService cService=new CategoryServiceImpl();
 		List<CategoryModel> list=cService.getAllCategories();
@@ -141,17 +141,10 @@ public class UpdateRegistrationController extends HttpServlet {
 		for(CategoryModel model:list) {
 			hs.put(model.getCid(), model.getCategory());
 		}
-//		out.println("            <%");
-//		out.println("            CategoryService cService=new CategoryServiceImpl();");
-//		out.println("            List<CategoryModel> list=cService.getAllCategories();");
-//		out.println("            LinkedHashMap<Integer,String> hs=new LinkedHashMap<Integer,String>();");
-//		out.println("            for(CategoryModel model:list) {");
-//		out.println("                hs.put(model.getCid(), model.getCategory());");
-//		out.println("            }");
-//		out.println("            %>");
+
 		out.println("            <div class=\"form-group\">");
 		out.println("                <label for=\"category\">Category:</label>");
-		out.println("                <select id=\"category\" name=\"category\" required>");
+		out.println("                <select id=\"category\" name=\"category\" required=\"required\">");
 		out.println("                    <option style='color:black;' value=\"\">Select Category</option>");
 		//out.println("                    <%");
 		 Set<Map.Entry<Integer, String>> s=hs.entrySet();
@@ -160,13 +153,7 @@ public class UpdateRegistrationController extends HttpServlet {
 		 }
 		 out.println("                </select>");
 		 out.println("            </div>");
-//		out.println("                  Set<Map.Entry<Integer, String>> s=hs.entrySet(); ");
-//		out.println("                    for(Map.Entry<Integer, String> m:s) {");
-//		out.println("                    %>");
-		//out.println("                    <option value='<%=m.getKey()%>'><%=m.getValue() %></option>");
-		//out.println("                   <%");
-		//out.println("                    }");
-		//out.println("                   %>");
+
 		 RolesService rService=new RolesServiceImpl();
 			List<RolesModel> rlist=rService.getAllRoles();
 			LinkedHashMap<Integer,String> rs=new LinkedHashMap<Integer,String>();
@@ -175,7 +162,7 @@ public class UpdateRegistrationController extends HttpServlet {
 			}
 			out.println("            <div class=\"form-group\">");
 			out.println("                <label for=\"rolename\">Role:</label>");
-			out.println("                <select id=\"rolename\" name=\"rolename\" required>");
+			out.println("                <select id=\"rolename\" name=\"rolename\" required=\"required\">");
 			out.println("                    <option style='color:black;' value=\"\">Select Role</option>");
 			//out.println("                    <%");
 			 Set<Map.Entry<Integer, String>> set=rs.entrySet();

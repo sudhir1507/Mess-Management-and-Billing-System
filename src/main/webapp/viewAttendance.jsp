@@ -100,7 +100,7 @@ table th {
    padding:0.3em;
    width:20em;
    height:2em;
-   background-color:blue;
+   background-color:#1976d2;
    border-radius:20px;
   color: white; 
 }

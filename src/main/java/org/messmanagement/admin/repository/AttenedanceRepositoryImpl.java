@@ -58,5 +58,23 @@ public class AttenedanceRepositoryImpl extends DBConfig implements AttenedanceRe
 			return null;
 		}
 	}
+     List<Object[]> alist;
+	@Override
+	public List<Object[]> getMyAttendance(int reid) {
+		try {
+			alist=new ArrayList<>();
+			stmt=conn.prepareStatement("select a.adate,m.mealtime from attendence a inner join mealtype m on a.mtid=m.mtid where rid=?");
+			stmt.setInt(1, reid);
+			rs=stmt.executeQuery();
+			while(rs.next()) {
+				Object obj[]=new Object[] {rs.getDate(1),rs.getString(2)};
+				alist.add(obj);
+			}
+			return alist.size()>0?alist:null;
+		}catch(Exception e) {
+			System.out.println("Error is "+e);
+			return null;
+		}
+	}
 
 }

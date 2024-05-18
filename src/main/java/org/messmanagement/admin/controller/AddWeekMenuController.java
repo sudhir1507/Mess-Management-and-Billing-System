@@ -33,13 +33,12 @@ public class AddWeekMenuController extends HttpServlet {
 		WeekMenuService wService=new WeekMenuServiceImpl();
 		boolean b=wService.addWeekMenu(model);
 		if(b) {
-			RequestDispatcher r=request.getRequestDispatcher("addMenu.jsp");
-			r.include(request, response);
+			request.setAttribute("msg", "Menu Added Successfully..!");
 		}else {
-			RequestDispatcher r=request.getRequestDispatcher("addMenu.jsp");
-			out.println("Menu not added..!");
-			r.include(request, response);
+			request.setAttribute("msg", "Menu NOT Added..!");
 		}
+		RequestDispatcher r=request.getRequestDispatcher("addMenu.jsp");
+		r.include(request, response);
 	}
 
 	

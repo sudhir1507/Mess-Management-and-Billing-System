@@ -18,6 +18,11 @@ public class AttenedanceServiceImpl implements AttenedanceService{
 		
 		return aRepository.getAllAttendance();
 	}
+	@Override
+	public List<Object[]> getMyAttendance(int reid) {
+		
+		return aRepository.getMyAttendance(reid);
+	}
 
 	
 

@@ -1,5 +1,6 @@
 package org.messmangement.admin.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.messmanagement.admin.model.WeekMenuModel;
@@ -27,6 +28,11 @@ public class WeekMenuServiceImpl implements WeekMenuService {
 	public boolean isUpdateWeekMenu(WeekMenuModel model) {
 		
 		return wRepository.isUpdateWeekMenu(model);
+	}
+	@Override
+	public WeekMenuModel getTodaysMenu(Date date) {
+		
+		return wRepository.getTodaysMenu(date);
 	}
 
 }

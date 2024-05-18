@@ -1,5 +1,6 @@
 package org.messmanagement.admin.repository;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +71,27 @@ public class WeekMenuRepositoryImpl extends DBConfig implements WeekMenuReposito
 		}catch(Exception e) {
 			System.out.println("Error is "+e);
 			return false;
+		}
+	}
+
+	@Override
+	public WeekMenuModel getTodaysMenu(Date date) {
+		try {
+			WeekMenuModel model=new WeekMenuModel();
+			stmt=conn.prepareStatement("select mdate,lunch,dinner from weekmenu where mdate=?");
+			stmt.setDate(1, date);
+			rs=stmt.executeQuery();
+			if(rs.next()) {
+				model.setDate(rs.getDate(1));
+				model.setLunch(rs.getString(2));
+				model.setDinner(rs.getString(3));
+				return model;
+			}else {
+			    return null;
+			}
+		}catch(Exception e) {
+			System.out.println("Error is "+e);
+			return null;
 		}
 	}
 

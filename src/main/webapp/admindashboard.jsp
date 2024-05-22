@@ -94,7 +94,7 @@ font-size: 1em;
                                 <a href="registration.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline innerspan">Add Registration</span></a>
                             </li>
                             <li>
-                                <a href="viewRegistration.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline innerspan">View Registrations</span></a>
+                                <a href="viewreg.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline innerspan">View Registrations</span></a>
                             </li>
                         </ul>
                     </li>

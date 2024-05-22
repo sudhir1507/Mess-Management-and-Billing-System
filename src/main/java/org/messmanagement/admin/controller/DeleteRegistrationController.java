@@ -26,10 +26,10 @@ public class DeleteRegistrationController extends HttpServlet {
 		RegistrationService rService=new RegistrationServiceImpl();
 		boolean b=rService.deleteRegistration(rid);
 		if(b) {
-			RequestDispatcher r=request.getRequestDispatcher("viewRegistration.jsp");
+			RequestDispatcher r=request.getRequestDispatcher("viewreg.jsp");
 			r.include(request, response);
 		}else {
-			RequestDispatcher r=request.getRequestDispatcher("viewRegistration.jsp");
+			RequestDispatcher r=request.getRequestDispatcher("viewreg.jsp");
 			r.include(request, response);
 		}
 	}

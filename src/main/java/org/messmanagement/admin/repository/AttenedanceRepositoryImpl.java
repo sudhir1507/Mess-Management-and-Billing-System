@@ -46,7 +46,7 @@ public class AttenedanceRepositoryImpl extends DBConfig implements AttenedanceRe
 	public List<Object[]> getAllAttendance() {
 		try {
 			list=new ArrayList<>();
-			stmt=conn.prepareStatement("select r.name,a.adate,m.mealtime from registration r inner join attendence a on a.rid=r.rid inner join mealtype m on m.mtid=a.mtid");
+			stmt=conn.prepareStatement("select r.name,a.adate,m.mealtime from registration r inner join attendence a on a.rid=r.rid inner join mealtype m on m.mtid=a.mtid order by adate");
 			rs=stmt.executeQuery();
 			while(rs.next()) {
 				Object obj[]=new Object[] {rs.getString(1),rs.getDate(2),rs.getString(3)};
@@ -63,7 +63,7 @@ public class AttenedanceRepositoryImpl extends DBConfig implements AttenedanceRe
 	public List<Object[]> getMyAttendance(int reid) {
 		try {
 			alist=new ArrayList<>();
-			stmt=conn.prepareStatement("select a.adate,m.mealtime from attendence a inner join mealtype m on a.mtid=m.mtid where rid=?");
+			stmt=conn.prepareStatement("select a.adate,m.mealtime from attendence a inner join mealtype m on a.mtid=m.mtid where rid=? order by adate");
 			stmt.setInt(1, reid);
 			rs=stmt.executeQuery();
 			while(rs.next()) {

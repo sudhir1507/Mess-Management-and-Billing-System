@@ -205,7 +205,7 @@ select {
 
 					<td data-label="Category"><input name ="category" id="category" type ="text" value="<%=obj[9]%>" readonly="readonly" ></td>
 					<td data-label="adate">
-					<input name ="adate" type ="date" value="" id="adate" >
+					<input name ="adate" type ="date" value="" id="adate" required="required">
 					</td>
 					<td>
 						<%

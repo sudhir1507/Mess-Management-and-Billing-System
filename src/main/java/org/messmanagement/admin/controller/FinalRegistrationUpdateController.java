@@ -37,10 +37,10 @@ public class FinalRegistrationUpdateController extends HttpServlet {
 		RegistrationService rService=new RegistrationServiceImpl();
 		boolean b=rService.updateRegistration(rid,name,contact,address,rsdate,redate,amount,username,password,cid,roleid);
 		if(b) {
-			RequestDispatcher r=request.getRequestDispatcher("viewRegistration.jsp");
+			RequestDispatcher r=request.getRequestDispatcher("viewreg.jsp");
 			r.forward(request, response);
 		}else {
-			out.println("<h1>Meal Time Data Not Updated<h1>");
+			out.println("<h1>Registration Not Updated<h1>");
 		}
 	}
 
